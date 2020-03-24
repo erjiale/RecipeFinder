@@ -31,7 +31,7 @@ class IngredientsForm extends Component {
         };  
 
         return (
-            <div class="form">
+            <div className="form">
                 <form onSubmit={ () => findRecipes(ingredients) } >
                     <h3>What ingredients do you have?</h3>
                     {
