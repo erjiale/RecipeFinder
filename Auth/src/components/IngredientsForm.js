@@ -32,7 +32,7 @@ class IngredientsForm extends Component {
 
         return (
             <div className="form">
-                <form onSubmit={ () => findRecipes(ingredients) } >
+                <form onSubmit={ (ev) => findRecipes(ev, ingredients) } >
                     <h3>What ingredients do you have?</h3>
                     {
                         ingredients.map((ingredient, index) => {

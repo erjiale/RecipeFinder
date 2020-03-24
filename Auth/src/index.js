@@ -15,7 +15,8 @@ class App extends Component {
     }
     render() {
 
-        const findRecipes = ingredients => {
+        const findRecipes = (ev, ingredients) => {
+            ev.preventDefault();
             ingredients.forEach((ingr, index) => console.log(`ingr ${index + 1}: ${ingr}`));
         };
 
