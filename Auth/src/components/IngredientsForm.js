@@ -31,26 +31,28 @@ class IngredientsForm extends Component {
         };  
 
         return (
-            <form onSubmit={ () => findRecipes(ingredients) } >
-                <h3>What ingredients do you have?</h3>
-                {
-                    ingredients.map((ingredient, index) => {
-                        return (
-                            <div key={ index } className="ingredientsinput">
-                                <input  type='text' 
-                                        onChange={ ev => setIngredient(ev.target.value, index) } 
-                                        value={ ingredient } 
-                                        placeholder={ `Ingredient ${index + 1}` } 
-                                        className='ingr' 
-                                />
-                                {index >= 5 ? <button className='remove' onClick={ ev => deleteIngredient(ev, index) }>X</button> : ''}
-                            </div>
-                        )
-                    })
-                }
-                <button className="addmore" onClick={ ev => addIngredient(ev) }>Add more ingredients</button>
-                <input type="submit" value="Find Recipe" />
-            </form>
+            <div class="form">
+                <form onSubmit={ () => findRecipes(ingredients) } >
+                    <h3>What ingredients do you have?</h3>
+                    {
+                        ingredients.map((ingredient, index) => {
+                            return (
+                                <div key={ index } className="ingredientsinput">
+                                    <input  type='text' 
+                                            onChange={ ev => setIngredient(ev.target.value, index) } 
+                                            value={ ingredient } 
+                                            placeholder={ `Ingredient ${index + 1}` } 
+                                            className='ingr' 
+                                    />
+                                    { index >= 5 ? <button className='remove' onClick={ ev => deleteIngredient(ev, index) }>X</button> : ''}
+                                </div>
+                            )
+                        })
+                    }
+                    <button className="add" onClick={ ev => addIngredient(ev) }>Add more ingredients</button>
+                    <input className="add" type="submit" value="Find Recipe" />
+                </form>
+            </div>
         );
     }
 };
