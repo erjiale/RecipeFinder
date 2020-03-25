@@ -25,7 +25,7 @@ app.use('/api/posts', postRoute)
 
 app.get('/', (req, res, next)=> {
     res.sendFile(path.join(__dirname, '/static/index.html'));
-  });
+}); 
 
 app.listen(3000, () => console.log("Server is running"));
 
