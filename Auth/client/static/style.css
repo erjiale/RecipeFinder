@@ -25,7 +25,7 @@ nav > div > a {
     color: black;
 }
 
-nav > div > a:hover {
+nav > div > a:hover, .selected {
     text-decoration: none;
     color: white;
     background-color: tomato;
@@ -56,7 +56,57 @@ input.ingr, .add {
     box-sizing: border-box;
 }
 
-.form {
+.form, .loginbutton  {
     display: flex;
     justify-content: center;
+}
+
+.loginform {
+    text-align: center;
+}
+
+.logininputs {
+    width: 50%;
+    margin: 1rem;
+    box-sizing: border-box;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+.logindiv {
+    text-align: right;
+    width: 70%;
+}
+
+.loginbutton {
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 0 auto;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    background-color: tomato;
+    width: 100vw;
+    padding: 1rem;
+}
+
+.invisibleerror {
+    display: none;
+}
+
+label {
+    font-size: 1.5rem;
+}
+
+.allfavorites {
+    display: flex;
+    justify-content: space-around;
+}
+
+.favoritefood {
+    padding: 5rem;
+    color: blue;
+    font-size: 2rem;
 }
