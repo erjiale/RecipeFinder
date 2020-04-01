@@ -1,6 +1,6 @@
 module.exports = {
   entry: [
-    './src/client/'
+    './client/'
   ],
   module: {
     rules: [
