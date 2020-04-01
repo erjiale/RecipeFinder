@@ -16,15 +16,15 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true },
 
 // Middlewares
 app.use(express.json()); // Now we can send post requests
-app.use('/dist', express.static(path.join(__dirname, '../../dist'))); // for webpack
-app.use(express.static(path.join(__dirname, '../../static'))); // for the css
+app.use('/dist', express.static(path.join(__dirname, '../dist'))); // for webpack
+app.use(express.static(path.join(__dirname, '../client/static'))); // for the css
 
 // Route Middlewares
 app.use('/api/user', authRoute)
 app.use('/api/posts', postRoute)
 
 app.get('/', (req, res, next)=> {
-    res.sendFile(path.join(__dirname, '../../static/index.html'));
+    res.sendFile(path.join(__dirname, '../client/static/index.html'));
 }); 
 
 app.listen(3000, () => console.log("Server is running"));
