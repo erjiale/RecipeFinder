@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { HashRouter, Route, Link, Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 // components
 import Nav from './components/Nav';
@@ -30,13 +31,17 @@ class App extends Component {
             ingredients.forEach((ingr, index) => console.log(`ingr ${index + 1}: ${ingr}`));
         };
 
-        const getCredentials = info => {
+        const getCredentials = async info => {
             const { email, password } = info;
-            console.log(email, password);
+            // console.log(email, password);
+
+            const object = (await axios.post('/api/user/login', { email: email, password: password }));
+            object.headers ? this.setState({ email: email, authenticated: true }) : this.setState({ authenticated: false });
+            
 
             // IF LOGIN IS SUCCESSFUL, SET STATE WITH AUTHENTICATED BEING TRUE AND PUT IN THE USER INFO LIKE ID
             //IF LOGIN FAILED (WRONG PASSWORD, WRONG EMAIL), SET STATE WITH AUTH = FALSE AND ERR = 'WRONG INFO'
-            this.setState({ email: email, authenticated: true });
+            // this.setState({ email: email, authenticated: true });
             // this.setState({ err: 'Incorrect email or password' });
         };
 

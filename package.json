@@ -12,6 +12,7 @@
     "heroku-postbuild": "webpack -p",
     "start:dev": "nodemon api/index --ignore dist/ --ignore src/ & npm run build:dev"
   },
+  "proxy": "http://localhost:3000",
   "author": "",
   "license": "ISC",
   "dependencies": {

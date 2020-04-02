@@ -26,9 +26,9 @@ router.post('/register', async (req, res) => {
         email: req.body.email,
         password: hashedPassword
     });
-    try {
+    try { 
         const savedUser = await user.save();
-        res.send({user: user._id});   
+        res.send({user: user._id});
     }catch(err) {
         res.status(400).send(err);
     }
@@ -51,7 +51,6 @@ router.post('/login', async (req, res) => {
     // Create and Assign a token
     const token = jwt.sign({_id:user._id}, process.env.TOKEN_SECRET) // pass along some info in that jwt token, and TOKEN_SECRET that only our backend(db) knows about
     res.header('auth-token', token).send(token);
-
 });
 
 
