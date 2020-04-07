@@ -14,3 +14,6 @@ You don't know what to cook? RecipeFinder finds it for you!
 
 # 4-1 #
 #### separated server and client ####
+
+# 4-6 - 
+#### implemented the api calls and api testing so that recipes actually show up according to the inputs ####
