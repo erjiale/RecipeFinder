@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class IngredientsForm extends Component {
     constructor() {
@@ -14,7 +15,7 @@ class IngredientsForm extends Component {
         const setIngredient = (value, index) => {
             const tempingredients = [...ingredients];
             tempingredients[index] = value;
-            this.setState({ ingredients: tempingredients  });
+            this.setState({ ingredients: tempingredients });
         };
 
         const addIngredient = ev => {
@@ -50,7 +51,7 @@ class IngredientsForm extends Component {
                         })
                     }
                     <button className="add" onClick={ ev => addIngredient(ev) }>Add more ingredients</button>
-                    <input className="add" type="submit" value="Find Recipe" />
+                    <input disabled={ ingredients.filter(ingr => ingr === '').length !== 0 ? 'disabled' : '' } className="add" type="submit" value="Find Recipe" />
                 </form>
             </div>
         );

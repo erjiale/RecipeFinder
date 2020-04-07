@@ -13,4 +13,7 @@ You don't know what to cook? RecipeFinder finds it for you!
 ### known bug: when you log out, the logged out message stays until you refresh page ###
 
 # 4-1 #
-#### separated server and client and added auth with login/register ####
+#### separated server and client ####
+
+# 4-6 #
+#### implemented the api calls and api testing so that recipes actually show up according to the inputs ####

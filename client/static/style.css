@@ -110,3 +110,20 @@ label {
     color: blue;
     font-size: 2rem;
 }
+
+.recipe-card > ul > p {
+    font-size: 2rem;
+}
+
+.recipe-card {
+    margin: 4rem;
+    padding: 2rem;
+    border-bottom: 1px solid black;
+}
+
+.search-again {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 2rem;
+}
