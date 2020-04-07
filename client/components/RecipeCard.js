@@ -1,7 +1,6 @@
 import React from 'react';
 
 const RecipeCard = ({ recipe }) => {
-    console.log(recipe);
     return (
         <div className='recipe-card'>
             <h1>{ recipe.label }</h1>
