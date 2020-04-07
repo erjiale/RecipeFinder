@@ -24,7 +24,7 @@ class Login extends Component {
                     <div className='logindiv'><label htmlFor='password'>Password:</label>
                         <input className='logininputs' type='password' value={ password } onChange={ ev => this.setState({ password: ev.target.value }) } /> 
                     </div>
-                    <button className='loginbutton'>LOGIN</button>
+                    <button disabled={ !email || !password ? 'disabled' : '' } className='loginbutton'>LOGIN</button>
                 </form>
             </div>
         );

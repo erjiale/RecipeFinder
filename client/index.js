@@ -8,6 +8,7 @@ import Nav from './components/Nav';
 import IngredientsForm from './components/IngredientsForm';
 import Login from './components/Login';
 import Register from './components/Register';
+import Recipes from './components/Recipes';
 
 // logged in components 
 import User_ from './components/authorized/User_';
@@ -20,17 +21,13 @@ class App extends Component {
         this.state = {
             authenticated: false,
             email: '',
-            err: ''
+            err: '',
+            recipes: []
         };
     }
 
     render() {
-        const { email, authenticated, err } = this.state;
-
-        const findRecipes = (ev, ingredients) => {
-            ev.preventDefault();
-            ingredients.forEach((ingr, index) => console.log(`ingr ${index + 1}: ${ingr}`));
-        };
+        const { email, authenticated, err, recipes } = this.state;
 
         const getCredentials = async info => {
             const { email, password } = info;
@@ -45,7 +42,22 @@ class App extends Component {
 
         const logout = () => {
             this.setState({ email: '', authenticated: false, err: 'Successfully logged out' });
-            // setTimeout( () => window.addEventListener("hashchange", () => this.setState({ err: '' })), 100 );
+        };
+
+        const reset = () => {
+            this.setState({ recipes: [] });
+        };
+
+        const findRecipes = async (ev, inputs) => {
+            ev.preventDefault();
+            const API_ID = "41d54d75"
+            const API_KEY = "dd6be63ef848ed24366c0340af7d0759"
+            const query = inputs.reduce((entirestring, ingredient) => {
+                if(entirestring === '') return ingredient;
+                else return `${entirestring} and ${ingredient}`;
+            }, '');
+            const findrecipes = (await axios.get(`https://api.edamam.com/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}`)).data.hits;
+            this.setState({ recipes: findrecipes });
         };
 
         return (
@@ -53,7 +65,7 @@ class App extends Component {
                 { /* root paths */ }
                 <Link to='/' className='homepage' >RECIPE FINDER</Link>
                 <Route path='/' render={ props =>  authenticated ? <Nav_ {...props} logout={ logout } /> : <Nav {...props} /> } />
-                <Route exact path='/' render={ () => <IngredientsForm findRecipes={ findRecipes } /> } />
+                <Route exact path='/' render={ () => recipes.length === 0 ? <IngredientsForm findRecipes={ findRecipes } /> : <Recipes recipes={ recipes } reset={ reset } /> } /> 
 
                 { /* login/register */ }
                 <Route exact path='/login' render={ () =>   <main> 
@@ -66,13 +78,13 @@ class App extends Component {
                 <Route exact path='/user' render={ () => authenticated ? '' : <h1>Not logged in</h1>} />
 
                 { /* successful authorization */ }
-                <Route render={ () => ( authenticated ? (<main>
+                <Route exact path='/login' render={ () => ( authenticated ? (<main>
                                                             <Redirect to='/user' />
                                                             <Route exact path='/user' 
                                                              render={ () => <User_ info={ email } /> } />  
                                                         </main>) 
                                                         : <Redirect to='/login' /> )} />
-                <Route render={ () => ( authenticated ? (<main> 
+                <Route exact path='/login' render={ () => ( authenticated ? (<main> 
                                                             <Redirect to='/favorite' />
                                                             <Route exact path='/favorite'
                                                              render={ () => <FavoriteRecipes_ userid={ /* GET USER ID FROM AUTHENTICATION THING */ email } /> } />
