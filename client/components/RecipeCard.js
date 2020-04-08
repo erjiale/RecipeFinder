@@ -1,7 +1,8 @@
 import React from 'react';
 
 const RecipeCard = ({ recipe, ingredients }) => {
-    const missingingredients = recipe.ingredients.filter(recipeingr => !ingredients.some(ingr => recipeingr.text.includes(ingr)));
+    let missingingredients = []
+    if(ingredients) missingingredients = recipe.ingredients.filter(recipeingr => !ingredients.some(ingr => recipeingr.text.includes(ingr)));
     return (
         <div className='recipe-card'>
             <h1>{ recipe.label }</h1>
@@ -13,12 +14,16 @@ const RecipeCard = ({ recipe, ingredients }) => {
                 }
             </ul>
             <img src={ recipe.image }/>
-            <h1>Missing ingredients</h1>
-            <ul>
-            {
-                missingingredients.map(ingr => <li>{ingr.text}</li>)
-            }
-            </ul>
+            { missingingredients.length !== 0 ?
+            <div>
+                <h1>Missing ingredients</h1>
+                <ul>
+                {
+                    missingingredients.map(ingr => <li>{ingr.text}</li>)
+                }
+                </ul>
+            </div>
+            : '' }
         </div>
     );
 };
