@@ -1,15 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
 import RecipeCard from './RecipeCard';
 
-const Recipes = ({ recipes, reset }) => {
-    console.log(recipes);
+const Recipes = ({ recipes, ingredients }) => {
     return (
         <div className='all-recipes'>
-            <Link className='search-again' to='/' onClick={ reset }>Search Again</Link>
+            {/* <Link className='search-again' to='/' onClick={ reset }>Search Again</Link> */}
             {
-                recipes.map(recipe => <RecipeCard recipe={ recipe.recipe } /> )
+                recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } ingredients={ ingredients } recipe={ recipe.recipe } /> )
             }
         </div>
     );

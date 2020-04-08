@@ -8,7 +8,7 @@ import Nav from './components/Nav';
 import IngredientsForm from './components/IngredientsForm';
 import Login from './components/Login';
 import Register from './components/Register';
-import Recipes from './components/Recipes';
+import Recommended from './components/Recommended';
 
 // logged in components 
 import User_ from './components/authorized/User_';
@@ -21,13 +21,12 @@ class App extends Component {
         this.state = {
             authenticated: false,
             email: '',
-            err: '',
-            recipes: []
+            err: ''
         };
     }
 
     render() {
-        const { email, authenticated, err, recipes } = this.state;
+        const { email, authenticated, err } = this.state;
 
         const getCredentials = async info => {
             const { email, password } = info;
@@ -44,30 +43,15 @@ class App extends Component {
             this.setState({ email: '', authenticated: false, err: 'Successfully logged out' });
         };
 
-        const reset = () => {
-            this.setState({ recipes: [] });
-        };
-
-        const findRecipes = async (ev, inputs) => {
-            ev.preventDefault();
-            const API_ID = "41d54d75"
-            const API_KEY = "dd6be63ef848ed24366c0340af7d0759"
-            const query = inputs.reduce((entirestring, ingredient) => {
-                if(entirestring === '') return ingredient;
-                else return `${entirestring} and ${ingredient}`;
-            }, '');
-            const findrecipes = (await axios.get(`https://api.edamam.com/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}`)).data.hits;
-            // const findrecipes1 = (await axios.get(`https://api.edamam.com/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}/2`)).data.hits;
-            // console.log(findrecipes1);
-            this.setState({ recipes: findrecipes });
-        };
-
         return (
             <HashRouter>
                 { /* root paths */ }
                 <Link to='/' className='homepage' >RECIPE FINDER</Link>
                 <Route path='/' render={ props =>  authenticated ? <Nav_ {...props} logout={ logout } /> : <Nav {...props} /> } />
-                <Route exact path='/' render={ () => recipes.length === 0 ? <IngredientsForm findRecipes={ findRecipes } /> : <Recipes recipes={ recipes } reset={ reset } /> } /> 
+                <Route exact path='/' render={ () => <IngredientsForm /> } /> 
+
+                { /* doesnt matter if authorized or not */ }
+                <Route exact path='/popular' render={ () => <Recommended /> } />
 
                 { /* login/register */ }
                 <Route exact path='/login' render={ () =>   <main> 
