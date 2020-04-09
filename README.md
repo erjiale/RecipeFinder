@@ -17,3 +17,6 @@ You don't know what to cook? RecipeFinder finds it for you!
 
 # 4-6 #
 #### implemented the api calls and api testing so that recipes actually show up according to the inputs ####
+
+# 4-7 # 
+#### added popular recipes page and missing ingredients list ####
