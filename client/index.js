@@ -57,6 +57,8 @@ class App extends Component {
                 else return `${entirestring} and ${ingredient}`;
             }, '');
             const findrecipes = (await axios.get(`https://api.edamam.com/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}`)).data.hits;
+            // const findrecipes1 = (await axios.get(`https://api.edamam.com/search?q=${query}&app_id=${API_ID}&app_key=${API_KEY}/2`)).data.hits;
+            // console.log(findrecipes1);
             this.setState({ recipes: findrecipes });
         };
 
@@ -78,19 +80,16 @@ class App extends Component {
                 <Route exact path='/user' render={ () => authenticated ? '' : <h1>Not logged in</h1>} />
 
                 { /* successful authorization */ }
-                <Route exact path='/login' render={ () => ( authenticated ? (<main>
-                                                            <Redirect to='/user' />
+                <Route render={ () => ( authenticated ? (<main>
                                                             <Route exact path='/user' 
                                                              render={ () => <User_ info={ email } /> } />  
-                                                        </main>) 
-                                                        : <Redirect to='/login' /> )} />
-                <Route exact path='/login' render={ () => ( authenticated ? (<main> 
-                                                            <Redirect to='/favorite' />
+
                                                             <Route exact path='/favorite'
                                                              render={ () => <FavoriteRecipes_ userid={ /* GET USER ID FROM AUTHENTICATION THING */ email } /> } />
-                                                         </main>)
-                                                      : <Redirect to='/login' /> )} />
-
+                                                            <Redirect to='/favorite' />
+                                                        </main>) 
+                                                        : '' )} />  
+                                                        
             </HashRouter>
         );
     }
