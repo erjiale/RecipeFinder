@@ -15,6 +15,7 @@ class IngredientsForm extends Component {
     }
     render() {
         const { ingredients, recipes } = this.state;
+        const { authenticated, email } = this.props;
 
         const setIngredient = (value, index) => {
             const tempingredients = [...ingredients];
@@ -76,7 +77,7 @@ class IngredientsForm extends Component {
                     </form>
                 </div>
                 { recipes.length === 0 ? '' : <div ref={ this.ref }>
-                                                <Recipes recipes={ recipes } ingredients={ ingredients } />
+                                                <Recipes email={ email } authenticated={ authenticated } recipes={ recipes } ingredients={ ingredients } />
                                                </div> }
             </main>
 

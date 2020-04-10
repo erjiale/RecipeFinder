@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import RecipeCard from './RecipeCard';
+import RecipeCard from './cards/RecipeCard';
 
 class Recommended extends Component {
     constructor() {
@@ -20,10 +20,11 @@ class Recommended extends Component {
 
     render() {
         const { recipes } = this.state;
+        const { authenticated, email } = this.props;
         return (
             <div className='all-recipes'>
             {
-                recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } recipe={ recipe.recipe } /> )
+                recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } recipe={ recipe.recipe } authenticated={ authenticated } email={ email } /> )
             }
         </div>
         ); 
