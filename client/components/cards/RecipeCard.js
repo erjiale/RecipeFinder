@@ -3,6 +3,8 @@ import axios from 'axios';
 
 const RecipeCard = ({ recipe, ingredients, email, authenticated, location }) => {
     let missingingredients = []
+
+    //finds missing ingredients
     if(ingredients) missingingredients = recipe.ingredients.filter(recipeingr => !ingredients.some(ingr => recipeingr.text.includes(ingr)));
     return (
         <div className='recipe-card'>
@@ -48,7 +50,7 @@ const RecipeCard = ({ recipe, ingredients, email, authenticated, location }) => 
                 <h1>Missing ingredients</h1>
                 <ul>
                 {
-                    missingingredients.map(ingr => <li>{ingr.text}</li>)
+                    missingingredients.map(ingr => <li key={ ingr.uri }>{ingr.text}</li>)
                 }
                 </ul>
             </div>

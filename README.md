@@ -24,3 +24,6 @@ You don't know what to cook? RecipeFinder finds it for you!
 # 4-9 # 
 #### added favorite recipes. can add favorite, delete favorite ####
 #### only works with account email: jay@gmail.com. password: 123456789 because that's the only account in our mongo database that has the "favorites" option ####
+
+# 4-13 #
+#### added dropdown select when you type in an ingredient in the form. next step: i want to sort the found recipes by the amount of missing ingredients ####

@@ -45,12 +45,12 @@ h3 {
     font-size: 3rem;
 }
 
-.remove, input.ingr, .add {
+.remove, .add {
     padding: 0.5rem;
     font-size: 1rem;
 }
 
-input.ingr, .add {
+.add {
     width: 90%;
     margin: 1rem auto;
     box-sizing: border-box;
@@ -121,4 +121,17 @@ label {
     justify-content: center;
     font-weight: bold;
     font-size: 2rem;
+}
+
+.ingredientsinput {
+    width: 100%;
+}
+
+.ingr {
+    margin: 1rem 0;
+    width: 90%;
+}
+
+.ingr, .remove {
+    display: inline-block;
 }
