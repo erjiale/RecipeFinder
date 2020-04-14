@@ -43,6 +43,7 @@ class App extends Component {
             this.setState({ email: '', authenticated: false, err: 'Successfully logged out' });
         };
 
+        
         return (
             <HashRouter>
                 { /* root paths */ }

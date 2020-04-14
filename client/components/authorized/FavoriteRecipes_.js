@@ -12,6 +12,7 @@ class FavoriteRecipes_ extends Component {
 
     async componentDidMount() {
         const { userid } = this.props; //RIGHT NOW IT IS THE EMAIL. I DONT HAVE A WAY OF GETTING THE USERID FROM DATABASE YET
+        console.log(userid);
         //await get favorites from database
         //i got userid here because you need it to search for the guy's favorite foods from database
         //this.setState({ userid: userid, favorites: favoritesfromdatabase });
