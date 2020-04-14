@@ -1,15 +1,16 @@
 import React from 'react';
 import axios from 'axios';
 
-const RecipeCard = ({ recipe, ingredients, email, authenticated, location }) => {
+const RecipeCard = ({ recipe, missingingredients, email, location }) => {
     let missingingredients = []
-    if(ingredients) missingingredients = recipe.ingredients.filter(recipeingr => !ingredients.some(ingr => recipeingr.text.includes(ingr)));
+
+    //finds missing ingredients
     return (
         <div className='recipe-card'>
             <h1>{ recipe.label }</h1>
 
             { /* if authenticated, show the button. if not, show nothing */ }
-            { authenticated ? 
+            { email ? 
                 <form onSubmit={ async () => {
                     // const API_ID = "41d54d75"
                     // const API_KEY = "dd6be63ef848ed24366c0340af7d0759"
@@ -48,7 +49,7 @@ const RecipeCard = ({ recipe, ingredients, email, authenticated, location }) => 
                 <h1>Missing ingredients</h1>
                 <ul>
                 {
-                    missingingredients.map(ingr => <li>{ingr.text}</li>)
+                    missingingredients.map(ingr => <li key={ ingr.uri }>{ingr.text}</li>)
                 }
                 </ul>
             </div>

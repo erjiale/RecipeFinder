@@ -48,10 +48,10 @@ class App extends Component {
                 { /* root paths */ }
                 <Link to='/' className='homepage' >RECIPE FINDER</Link>
                 <Route path='/' render={ props =>  authenticated ? <Nav_ {...props} logout={ logout } /> : <Nav {...props} /> } />
-                <Route exact path='/' render={ () => <IngredientsForm email={ email } authenticated={ authenticated }/> } /> 
+                <Route exact path='/' render={ () => <IngredientsForm email={ email } /> } /> 
 
                 { /* doesnt matter if authorized or not */ }
-                <Route exact path='/popular' render={ () => <Recommended authenticated={ authenticated } email={ email }/> } />
+                <Route exact path='/popular' render={ () => <Recommended email={ email }/> } />
 
                 { /* login/register */ }
                 <Route exact path='/login' render={ () =>   <main> 

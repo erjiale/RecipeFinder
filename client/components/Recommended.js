@@ -20,11 +20,11 @@ class Recommended extends Component {
 
     render() {
         const { recipes } = this.state;
-        const { authenticated, email } = this.props;
+        const { email } = this.props;
         return (
             <div className='all-recipes'>
             {
-                recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } recipe={ recipe.recipe } authenticated={ authenticated } email={ email } /> )
+                recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } recipe={ recipe.recipe } email={ email } /> )
             }
         </div>
         ); 
