@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 
 import RecipeCard from '../cards/RecipeCard';
+
+//thunks
+import { getFavorites, destroy } from '../../store/store';
 
 class FavoriteRecipes_ extends Component {
     constructor() {
@@ -13,20 +16,18 @@ class FavoriteRecipes_ extends Component {
     }   
 
     async componentDidMount() {
-        const { email } = this.props;
-        const foods = (await axios.get(`/api/user/${email}/favorites`)).data.favorites;
-        this.setState({ email: email, favorites: foods });
+        const { email, load } = this.props;
+        load(email);
     }
 
     render() {
-        const { email, favorites } = this.state;
-        const { location } = this.props;
+        const { favorites, location, unfavorite, email } = this.props;
         return (
             <main>
                 <h1>Your favorite recipes</h1>
                 <div>
                     {
-                        favorites.length !== 0 ? favorites.map((food, index) => <RecipeCard email={ email } authenticated={ true } key={ index } location={ location.pathname.slice(1) } recipe={ food } /> ) : ''
+                        favorites.length !== 0 ? favorites.map((food, index) => <RecipeCard unfavorite={ unfavorite } email={ email } authenticated={ true } key={ index } location={ location.pathname.slice(1) } recipe={ food } /> ) : ''
                     }
                 </div>
             </main> 
@@ -34,4 +35,17 @@ class FavoriteRecipes_ extends Component {
     }
 };
 
-export default FavoriteRecipes_;
+const mapStateToProps = state => {
+    return {
+        favorites: state.favorites
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        load: email => dispatch(getFavorites(email)),
+        unfavorite: (recipe, email) => dispatch(destroy(recipe, email))
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FavoriteRecipes_);

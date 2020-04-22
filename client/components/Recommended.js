@@ -1,34 +1,51 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
 import RecipeCard from './cards/RecipeCard';
+
+//thunks 
+import { loadRecipes } from '../store/store';
 
 class Recommended extends Component {
     constructor() {
         super();
-        this.state = {
-            recipes: []
-        };
     }
 
-    async componentDidMount() {
-        const API_ID = "41d54d75"
-        const API_KEY = "dd6be63ef848ed24366c0340af7d0759"
-        const search = 'chicken and beef and shrimp';
-        const findrecipes = (await axios.get(`https://api.edamam.com/search?q=${search}&app_id=${API_ID}&app_key=${API_KEY}`)).data.hits;
-        this.setState({ recipes: findrecipes });
+    componentDidMount() {
+        this.props.load();
+    }
+
+    componentWillUnmount() {
+        //clears the recipes list
+        this.props.clear();
     }
 
     render() {
-        const { recipes } = this.state;
-        const { authenticated, email } = this.props;
+        const { recipes, authenticated, email } = this.props;
         return (
             <div className='all-recipes'>
             {
                 recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } recipe={ recipe.recipe } authenticated={ authenticated } email={ email } /> )
             }
-        </div>
+            </div>
         ); 
     }
 };
 
-export default Recommended;
+const mapStateToProps = state => {
+    return {
+        recipes: state.recipes
+    }
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        load: () => {
+            dispatch(loadRecipes('chicken and beef and shrimp'));
+        },
+        clear: () => {
+            dispatch(loadRecipes(''));
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Recommended);
