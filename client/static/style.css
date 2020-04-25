@@ -45,12 +45,12 @@ h3 {
     font-size: 3rem;
 }
 
-.remove, input.ingr, .add {
+.remove, .add {
     padding: 0.5rem;
     font-size: 1rem;
 }
 
-input.ingr, .add {
+.add {
     width: 90%;
     margin: 1rem auto;
     box-sizing: border-box;
@@ -100,12 +100,16 @@ label {
     font-size: 1.5rem;
 }
 
+<<<<<<< HEAD
 .allfavorites {
     display: flex;
     justify-content: space-around;
 }
 
 .favoritefood { 
+=======
+.favoritefood {
+>>>>>>> 6e8dd5901bdb244a478bbdf176cccf5f9c664fb0
     padding: 5rem;
     color: blue;
     font-size: 2rem;
@@ -126,4 +130,17 @@ label {
     justify-content: center;
     font-weight: bold;
     font-size: 2rem;
+}
+
+.ingredientsinput {
+    width: 100%;
+}
+
+.ingr {
+    margin: 1rem 0;
+    width: 90%;
+}
+
+.ingr, .remove {
+    display: inline-block;
 }

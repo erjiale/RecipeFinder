@@ -49,10 +49,10 @@ class App extends Component {
                 { /* root paths */ }
                 <Link to='/' className='homepage' >RECIPE FINDER</Link>
                 <Route path='/' render={ props =>  authenticated ? <Nav_ {...props} logout={ logout } /> : <Nav {...props} /> } />
-                <Route exact path='/' render={ () => <IngredientsForm /> } /> 
+                <Route exact path='/' render={ () => <IngredientsForm email={ email } authenticated={ authenticated }/> } /> 
 
                 { /* doesnt matter if authorized or not */ }
-                <Route exact path='/popular' render={ () => <Recommended /> } />
+                <Route exact path='/popular' render={ () => <Recommended authenticated={ authenticated } email={ email }/> } />
 
                 { /* login/register */ }
                 <Route exact path='/login' render={ () =>   <main> 
@@ -70,7 +70,7 @@ class App extends Component {
                                                              render={ () => <User_ info={ email } /> } />  
 
                                                             <Route exact path='/favorite'
-                                                             render={ () => <FavoriteRecipes_ userid={ /* GET USER ID FROM AUTHENTICATION THING */ email } /> } />
+                                                             render={ props => <FavoriteRecipes_ {...props} email={ email } /> } />
                                                             <Redirect to='/favorite' />
                                                         </main>) 
                                                         : '' )} />  

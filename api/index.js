@@ -23,6 +23,8 @@ app.use(express.static(path.join(__dirname, '../client/static'))); // for the cs
 app.use('/api/user', authRoute)
 app.use('/api/posts', postRoute)
 
+app.use('/api/user', require('./routes/favorites'));
+
 app.get('/', (req, res, next)=> {
     res.sendFile(path.join(__dirname, '../client/static/index.html'));
 }); 
