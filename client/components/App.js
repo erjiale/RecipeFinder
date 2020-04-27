@@ -9,6 +9,7 @@ import IngredientsForm from './IngredientsForm';
 import Login from './Login';
 import Register from './Register';
 import Recommended from './Recommended';
+import Comments from './Comments';
 
 // logged in components 
 import User_ from './authorized/User_';
@@ -22,7 +23,6 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            authenticated: false,
             email: '',
             err: ''
         };
@@ -33,13 +33,13 @@ class App extends Component {
     }
 
     render() {
-        const { email, authenticated, err } = this.state;
+        const { email, err } = this.state;
         const { auth, logoff } = this.props;
 
         const getCredentials = async info => {
             auth(info);
             //since we're doing redux we should not be doing any setstate... but im lazy to do all that token shit LOL
-            this.setState({ authenticated: true, email: info.email });
+            this.setState({  email: info.email });
         };
 
         const registerAccount = async info => {
@@ -50,18 +50,19 @@ class App extends Component {
         const logout = () => {
             logoff();
             //since we're doing redux we should not be doing any setstate... but im lazy to do all that token shit LOL
-            this.setState({ authenticated: false, email: '' });
+            this.setState({ email: '' });
         };
 
         return (
             <HashRouter>
                 { /* root paths */ }
                 <Link to='/' className='homepage' >RECIPE FINDER</Link>
-                <Route path='/' render={ props =>  authenticated ? <Nav_ {...props} logout={ logout } /> : <Nav {...props} /> } />
-                <Route exact path='/' render={ () => <IngredientsForm email={ email } authenticated={ authenticated }/> } /> 
+                <Route path='/' render={ props => email !== '' ? <Nav_ {...props} logout={ logout } email={ email } /> : <Nav {...props} /> } />
+                <Route exact path='/' render={ () => <IngredientsForm email={ email } /> } /> 
 
                 { /* doesnt matter if authorized or not */ }
-                <Route exact path='/popular' render={ () => <Recommended authenticated={ authenticated } email={ email }/> } />
+                <Route exact path='/popular' render={ () => <Recommended email={ email }/> } />
+                <Route path='/recipe/comments/:uri' render={ props => <Comments email={ email } {...props}/> } /> 
 
                 { /* login/register */ }
                 <Route exact path='/login' render={ () =>   <main> 
@@ -71,11 +72,11 @@ class App extends Component {
                 <Route exact path='/register' render={ () => <Register register={ registerAccount } /> } />
 
                 { /* not authorized */ }
-                <Route exact path='/user' render={ () => authenticated ? '' : <h1>Not logged in</h1>} />
+                <Route exact path='/user/:email' render={ () => email !== '' ? '' : <h1>Not logged in</h1>} />
 
                 { /* successful authorization */ }
-                <Route render={ () => ( authenticated ? (<main>
-                                                            <Route exact path='/user' 
+                <Route render={ () => ( email !== '' ? (<main>
+                                                            <Route exact path={`/user/${email}`} 
                                                              render={ () => <User_ info={ email } /> } />  
 
                                                             <Route exact path='/favorite'
