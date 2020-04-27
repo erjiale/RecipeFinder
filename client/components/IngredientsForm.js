@@ -23,7 +23,7 @@ class IngredientsForm extends Component {
     
     render() {
         const { ingredientsinput, results, ingredients } = this.state;
-        const { authenticated, email } = this.props;
+        const { email } = this.props;
 
         //redux
         const { getRecipes, recipes } = this.props;
@@ -104,7 +104,7 @@ class IngredientsForm extends Component {
                     </form>
                 </div>
                 { recipes && recipes.length !== 0 ? <div ref={ this.ref }>
-                                                <Recipes email={ email } authenticated={ authenticated } recipes={ recipes } ingredients={ ingredients } />
+                                                <Recipes email={ email } recipes={ recipes } ingredients={ ingredients } />
                                                </div> : ''}
             </main>
 

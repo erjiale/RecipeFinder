@@ -27,7 +27,7 @@ class FavoriteRecipes_ extends Component {
                 <h1>Your favorite recipes</h1>
                 <div>
                     {
-                        favorites.length !== 0 ? favorites.map((food, index) => <RecipeCard unfavorite={ unfavorite } email={ email } authenticated={ true } key={ index } location={ location.pathname.slice(1) } recipe={ food } /> ) : ''
+                        favorites.length !== 0 ? favorites.map((food, index) => <RecipeCard unfavorite={ unfavorite } email={ email } key={ index } location={ location.pathname.slice(1) } recipe={ food } /> ) : ''
                     }
                 </div>
             </main> 
