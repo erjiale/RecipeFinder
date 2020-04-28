@@ -24,6 +24,7 @@ app.use('/api/user', authRoute)
 app.use('/api/posts', postRoute)
 
 app.use('/api/user', require('./routes/favorites'));
+app.use('/api/comments', require('./routes/singleRecipe'));
 
 app.get('/', (req, res, next)=> {
     res.sendFile(path.join(__dirname, '../client/static/index.html'));

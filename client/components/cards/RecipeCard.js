@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const RecipeCard = props => {
-    const { recipe, ingredients, email, authenticated, location } = props;
+    const { recipe, ingredients, email, location } = props;
 
     //thunks
     const { unfavorite } = props;
@@ -13,10 +14,10 @@ const RecipeCard = props => {
     if(ingredients) missingingredients = recipe.ingredients.filter(recipeingr => !ingredients.some(ingr => recipeingr.text.includes(ingr)));
     return (
         <div className='recipe-card'>
-            <h1>{ recipe.label }</h1>
-
+            <Link className='commentslink' to={`/recipe/comments/${ encodeURIComponent(recipe.uri) }`}>{ recipe.label }</Link>
+            <br />
             { /* if authenticated, show the button. if not, show nothing */ }
-            { authenticated ? 
+            { email !== '' ? 
                 <form onSubmit={ async () => {
                     if(location === 'favorite') {
                        unfavorite(recipe, email);
@@ -38,7 +39,7 @@ const RecipeCard = props => {
             <ul>
                 <p>Ingredients</p>
                 {
-                    recipe.ingredients.map((ingr, index) => <li key={ index }>{ingr.text}</li>)
+                    recipe.ingredients && recipe.ingredients.map((ingr, index) => <li key={ index }>{ingr.text}</li>)
                 }
             </ul>
             <img src={ recipe.image }/>

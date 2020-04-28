@@ -144,3 +144,9 @@ label {
 .ingr, .remove {
     display: inline-block;
 }
+
+.commentslink {
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 2rem;
+}
