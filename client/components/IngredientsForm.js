@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import Select from 'react-select';
-
 
 //components
 import Recipes from './Recipes';
+
+//thunks 
+import { loadRecipes } from '../store/store';
 
 class IngredientsForm extends Component {
     constructor() {
@@ -16,12 +19,14 @@ class IngredientsForm extends Component {
             recipes: [],
             results: []
         };
-        this.API_ID = "41d54d75"
-        this.API_KEY = "dd6be63ef848ed24366c0340af7d0759"
     }
+    
     render() {
-        const { ingredientsinput, recipes, results, ingredients } = this.state;
+        const { ingredientsinput, results, ingredients } = this.state;
         const { authenticated, email } = this.props;
+
+        //redux
+        const { getRecipes, recipes } = this.props;
 
         //this changes the INPUT value (this is needed because when you click outside of the dropdown, the value resets)
         const setIngredient = (value, index) => {
@@ -54,12 +59,11 @@ class IngredientsForm extends Component {
                 if(entirestring === '') return ingredient;
                 else return `${entirestring} and ${ingredient}`;
             }, '');
-            const findrecipes = (await axios.get(`https://api.edamam.com/search?q=${query}&app_id=${this.API_ID}&app_key=${this.API_KEY}`)).data.hits;
-            this.setState({ recipes: findrecipes });
-            this.ref.current.scrollIntoView({
+            getRecipes(query);
+            setTimeout( () => this.ref.current.scrollIntoView({
                 behavior: 'smooth',
                 inline: 'center',
-              });
+            }), 800);
         };
 
         const autocorrect = async (index) => {
@@ -99,13 +103,27 @@ class IngredientsForm extends Component {
                         <input disabled={ ingredients.filter(ingr => ingr === '').length !== 0 ? 'disabled' : '' } className="add" type="submit" value="Find Recipe" />
                     </form>
                 </div>
-                { recipes.length === 0 ? '' : <div ref={ this.ref }>
+                { recipes && recipes.length !== 0 ? <div ref={ this.ref }>
                                                 <Recipes email={ email } authenticated={ authenticated } recipes={ recipes } ingredients={ ingredients } />
-                                               </div> }
+                                               </div> : ''}
             </main>
 
         );
     }
 };
 
-export default IngredientsForm;
+const mapStateToProps = state => {
+    return {
+        recipes: state.recipes
+    };
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getRecipes: ingredients => {
+            dispatch(loadRecipes(ingredients));
+        }
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(IngredientsForm);
