@@ -100,16 +100,12 @@ label {
     font-size: 1.5rem;
 }
 
-<<<<<<< HEAD
 .allfavorites {
     display: flex;
     justify-content: space-around;
 }
 
-.favoritefood { 
-=======
 .favoritefood {
->>>>>>> 6e8dd5901bdb244a478bbdf176cccf5f9c664fb0
     padding: 5rem;
     color: blue;
     font-size: 2rem;
