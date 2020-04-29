@@ -1,12 +1,12 @@
 # RecipeFinder
-## RECIPEFINDER
 You don't know what to cook? RecipeFinder finds it for you!
 
-#### to run: npm i ####
-#### npm run start ####
-#### go to localhost:3000 ####
+## How to Run
+#### 1. npm i ####
+#### 2. npm run start ####
+#### 3. go to localhost:4000 ####
 
-# 3-23 # 
+# 3-23 #
 #### added webpack, react ####
 
 # 3-25 #
