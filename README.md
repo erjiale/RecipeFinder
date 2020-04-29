@@ -1,4 +1,4 @@
-# RecipeFinder
+## RecipeFinder
 You don't know what to cook? RecipeFinder finds it for you!
 
 #### to run: npm i ####
