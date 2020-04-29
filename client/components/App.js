@@ -24,7 +24,9 @@ class App extends Component {
         super();
         this.state = {
             email: '',
-            err: ''
+            err: '',
+            user: {},
+            foundRecipe: false
         };
     }
 
@@ -33,13 +35,19 @@ class App extends Component {
     }
 
     render() {
-        const { email, err } = this.state;
+        const { email, err, user, foundRecipe } = this.state;
         const { auth, logoff } = this.props;
 
+        const toggleFound = () => {
+            this.setState({ foundRecipe: !foundRecipe });
+        };
+
         const getCredentials = async info => {
-            auth(info);
+            await auth(info);
+            const token = window.localStorage.getItem('token');
             //since we're doing redux we should not be doing any setstate... but im lazy to do all that token shit LOL
-            this.setState({  email: info.email });
+            const user = (await axios.get(`/api/user/${ info.email }`)).data;
+            if(token) this.setState({  email: info.email, user });
         };
 
         const registerAccount = async info => {
@@ -57,12 +65,12 @@ class App extends Component {
             <HashRouter>
                 { /* root paths */ }
                 <Link to='/' className='homepage' >RECIPE FINDER</Link>
-                <Route path='/' render={ props => email !== '' ? <Nav_ {...props} logout={ logout } email={ email } /> : <Nav {...props} /> } />
-                <Route exact path='/' render={ () => <IngredientsForm email={ email } /> } /> 
+                <Route path='/' render={ props => email !== '' ? <Nav_ foundRecipe={ foundRecipe } {...props} logout={ logout } email={ email } /> : <Nav foundRecipe={ foundRecipe } {...props} /> } />
+                <Route exact path='/' render={ () => <IngredientsForm email={ email } toggleFound={ toggleFound } /> } /> 
 
                 { /* doesnt matter if authorized or not */ }
-                <Route exact path='/popular' render={ () => <Recommended email={ email }/> } />
-                <Route path='/recipe/comments/:uri' render={ props => <Comments email={ email } {...props}/> } /> 
+                <Route exact path='/popular' render={ () => <Recommended toggleFound={ toggleFound } foundRecipe={ foundRecipe } email={ email }/> } />
+                <Route path='/recipe/comments/:uri' render={ props => <Comments user={ user } {...props}/> } /> 
 
                 { /* login/register */ }
                 <Route exact path='/login' render={ () =>   <main> 
@@ -77,7 +85,7 @@ class App extends Component {
                 { /* successful authorization */ }
                 <Route render={ () => ( email !== '' ? (<main>
                                                             <Route exact path={`/user/${email}`} 
-                                                             render={ () => <User_ info={ email } /> } />  
+                                                             render={ () => <User_ user={ user } /> } />  
 
                                                             <Route exact path='/favorite'
                                                              render={ props => <FavoriteRecipes_ {...props} email={ email } /> } />

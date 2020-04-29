@@ -23,10 +23,9 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    favorites: [{
-        recipe: Object,
-    }]
-    
+    favorites: {
+        type: Array
+    }
 });
 
 module.exports = mongoose.model('User', userSchema);

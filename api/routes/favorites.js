@@ -33,8 +33,7 @@ router.post('/:email/favorites', async (req, res, next) => {
                             favorites: [...favorites, favoriteObj]
                         }
                     }
-                ],
-            );
+                ])
             res.status(201).json(user);
         }
         else {

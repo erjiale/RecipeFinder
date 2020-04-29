@@ -15,6 +15,7 @@ class Login extends Component {
 
         return (
             <div className="loginform">
+                <h1>admin info: admin@gmail.com, hello123</h1>
                 <form onSubmit={ ev => {ev.preventDefault; login({ email, password })} }>
                     <h1 className='loginform'>Login</h1>
                     <div className='logindiv'>
