@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Admin_ from './Admin_';
+import Messages_ from './Messages_';
 
 const User_ = props => {
-    const { info } = props;
+    const { user } = props;
     return (
         <main>
-            <h1>Welcome {info}!</h1>
-            <p>You are successfully logged in</p>
+            <p>You are successfully logged in as { user.name } { user.admin ? '(admin)' : '' }</p>
+            {
+                user.admin ? <Admin_ user={ user } /> : <Messages_ user={ user } /> 
+            }
         </main>
     );
 };

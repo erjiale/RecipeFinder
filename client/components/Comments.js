@@ -22,7 +22,7 @@ class Comments extends Component {
     }
 
     render() {
-        const { email } = this.props;
+        const { email, user } = this.props;
         const { recipe, comment } = this.state;
 
         const addComment = ev => {
@@ -30,8 +30,13 @@ class Comments extends Component {
             console.log(comment);
         };
 
+        const orderRecipe = () => {
+            console.log('good');
+        };
+
         return (
             <div>
+                { user.admin ? <button onClick={ orderRecipe }>Order Recipe</button> : '' }
                 <RecipeCard recipe={ recipe } email='' />
                 <h1>Comments</h1>
                 { email !== '' ? <form onSubmit={ addComment }>

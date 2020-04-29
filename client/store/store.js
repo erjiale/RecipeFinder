@@ -14,12 +14,9 @@ import loginReducer from './reducers/loginreducers';
 import favoritesReducer from './reducers/favoritesreducer';
 
 
-const API_ID = "41d54d75"
-const API_KEY = "dd6be63ef848ed24366c0340af7d0759"
-
-const loadRecipes = ingredients => {
+const loadRecipes = (ingredients = 'chicken and beef and shrimp') => {
     return async dispatch => {
-        const recipes = (await axios.get(`https://api.edamam.com/search?q=${ingredients}&app_id=${API_ID}&app_key=${API_KEY}`)).data.hits
+        const recipes = (await axios.get(`/api/recipes/${ingredients}`)).data;
         dispatch(_loadRecipes(recipes));
 	};
 };
@@ -41,9 +38,15 @@ const destroy = (recipe, email) => {
 const login = info => {
     return async dispatch => {
         const { email, password } = info;
-        const token = (await axios.post('/api/user/login', { email, password })).data;
-        window.localStorage.setItem('token', token);
-        dispatch(_login(token));
+        try {
+            const token = (await axios.post('/api/user/login', { email, password })).data;
+            dispatch(_login(token));
+            window.localStorage.setItem('token', token);
+        } catch(err) {
+            if(err.response && err.response.status === 400) {
+                dispatch(null);
+            }
+        }
     }
 };
 

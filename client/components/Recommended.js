@@ -10,22 +10,24 @@ class Recommended extends Component {
         super();
     }
 
-    componentDidMount() {
-        this.props.load();
-    }
-
-    componentWillUnmount() {
-        //clears the recipes list
-        this.props.clear();
-    }
+    // componentDidMount() {
+    //     this.props.load();
+    // }
 
     render() {
-        const { recipes, email } = this.props;
+        const { recipes, email, foundRecipe, toggleFound, load } = this.props;
         return (
             <div className='all-recipes'>
-            {
-                recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } recipe={ recipe.recipe } email={ email } /> )
-            }
+                {
+                    foundRecipe ? <button onClick={ () => {
+                        toggleFound();
+                        load();
+                    }}>Get Recommended</button> 
+                    : ''
+                }
+                {
+                    recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } recipe={ recipe.recipe } email={ email } /> )
+                }
             </div>
         ); 
     }
@@ -40,10 +42,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         load: () => {
-            dispatch(loadRecipes('chicken and beef and shrimp'));
-        },
-        clear: () => {
-            dispatch(loadRecipes(''));
+            dispatch(loadRecipes());
         }
     }
 };
