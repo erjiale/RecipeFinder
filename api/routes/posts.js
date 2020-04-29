@@ -9,7 +9,7 @@ router.get('/', verify, (req, res) => {
     //         description: 'random post you should not be able to access w/o logging in'
     //     }
     // });
-    res.send(req.user);
+    res.send("id: " + req.user._id);
 })
 
 

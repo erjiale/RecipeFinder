@@ -22,7 +22,11 @@ const userSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    favorites: [{
+        recipe: Object,
+    }]
+    
 });
 
 module.exports = mongoose.model('User', userSchema);
