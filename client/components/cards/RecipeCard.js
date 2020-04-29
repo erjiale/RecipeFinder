@@ -48,7 +48,7 @@ const RecipeCard = props => {
                 <h1>Missing ingredients</h1>
                 <ul>
                 {
-                    missingingredients.map(ingr => <li key={ ingr.uri }>{ingr.text}</li>)
+                    missingingredients.map((ingr, index) => <li key={ index }>{ingr.text}</li>)
                 }
                 </ul>
             </div>

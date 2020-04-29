@@ -23,7 +23,7 @@ class IngredientsForm extends Component {
     
     render() {
         const { ingredientsinput, results, ingredients } = this.state;
-        const { email } = this.props;
+        const { email, toggleFound } = this.props;
 
         //redux
         const { getRecipes, recipes } = this.props;
@@ -64,6 +64,7 @@ class IngredientsForm extends Component {
                 behavior: 'smooth',
                 inline: 'center',
             }), 800);
+            toggleFound();
         };
 
         const autocorrect = async (index) => {
