@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
         default: Date.now
     },
     favorites: [{
-        recipeURL: String,
+        recipe: Object,
     }]
     
 });

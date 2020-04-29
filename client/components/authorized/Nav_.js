@@ -11,7 +11,7 @@ const Nav_ = ({ location, logout, email }) => {
             </div>
             <div className="loginregisterlink">
                 <Link to={`/user/${email}`} className={ url === 'user' ? 'selected' : '' } >My Profile</Link>
-                <Link to='/logout' onClick={ () => logout() } >Log Out</Link>
+                <Link to='/login' onClick={ () => logout() } >Log Out</Link> 
             </div>
         </nav>
     );
