@@ -21,7 +21,8 @@ router.post('/:email/favorites', async (req, res, next) => {
             { email: email },
             { favorites: [] } 
         );
-        const favorites = (Object.entries(user)[3])[1].favorites;
+        const favorites = user.favorites;
+        
         await User.updateOne(
             { email: email },
             [
@@ -46,7 +47,7 @@ router.delete('/:email/favorites/:uri', async (req, res, next) => {
             { email: email },
             { favorites: [] }
         );
-        const favorites = (Object.entries(user)[3])[1].favorites;
+        const favorites = user.favorites;
         await User.updateOne(
             { email: email },
             [
