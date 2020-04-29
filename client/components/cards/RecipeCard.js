@@ -14,7 +14,7 @@ const RecipeCard = props => {
     if(ingredients) missingingredients = recipe.ingredients.filter(recipeingr => !ingredients.some(ingr => recipeingr.text.includes(ingr)));
     return (
         <div className='recipe-card'>
-            <Link className='commentslink' to={`/recipe/comments/${ encodeURIComponent(recipe.uri) }`}>{ recipe.label }</Link>
+            <h3><Link className='commentslink' to={`/recipe/comments/${ encodeURIComponent(recipe.uri) }`}>{ recipe.label }</Link></h3>
             <br />
             { /* if authenticated, show the button. if not, show nothing */ }
             { email !== '' ? 
@@ -23,7 +23,7 @@ const RecipeCard = props => {
                        unfavorite(recipe, email);
 
                     } else {
-                        //pls dont try to add the same recipe twice. i didnt add that exception yet
+                        // adds to favorite array in db only if it is NOT a duplicate
                         await axios.post(`/api/user/${email}/favorites`, { favoriteObj: recipe });
                         alert('added');
                     }
