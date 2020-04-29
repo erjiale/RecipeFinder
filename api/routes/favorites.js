@@ -22,7 +22,7 @@ router.post('/:email/favorites', async (req, res, next) => {
             { favorites: [] } 
         );
         const favorites = user.favorites;
-
+        
         // not a duplicate? Then update array.
         if(favorites.filter(favorite=>favorite.uri === favoriteObj.uri).length === 0) {
             await User.updateOne(
