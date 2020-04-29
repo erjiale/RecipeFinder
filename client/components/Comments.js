@@ -22,13 +22,13 @@ class Comments extends Component {
     }
 
     render() {
-        const { email, user } = this.props;
+        const { user } = this.props;
         const { recipe, comment } = this.state;
 
-        const addComment = ev => {
-            ev.preventDefault();
-            console.log(comment);
-        };
+        // const addComment = ev => {
+        //     ev.preventDefault();
+        //     console.log(comment);
+        // };
 
         const orderRecipe = () => {
             console.log('good');
@@ -36,13 +36,13 @@ class Comments extends Component {
 
         return (
             <div>
-                { user.admin ? <button onClick={ orderRecipe }>Order Recipe</button> : '' }
+                { user.email && !user.admin ? <button onClick={ orderRecipe }>Order Recipe</button> : '' }
                 <RecipeCard recipe={ recipe } email='' />
-                <h1>Comments</h1>
-                { email !== '' ? <form onSubmit={ addComment }>
+                {/* <h1>Comments</h1>
+                { user === {} ? <form onSubmit={ addComment }>
                                     <input type='text' value={ comment } onChange={ ev => this.setState({ comment: ev.target.value }) }/>
                                 </form>
-                                : <Link to='/login'>Please sign in to comment</Link> }
+                                : <Link to='/login'>Please sign in to comment</Link> } */}
             </div>
         );
     }
