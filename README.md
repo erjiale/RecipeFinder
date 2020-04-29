@@ -35,7 +35,7 @@ You don't know what to cook? RecipeFinder finds it for you!
 - [x] sign up
 - [ ] favorite recipe - need to fix bug
 - [ ] find recipe - need to fix autocorrect
-- [ ] order recipe
+1. order recipe
       - [ ] user can select a recipe
       - [ ] admin is notified of a new user selection
       - [ ] admin can approve or deny order via admin dashboard
