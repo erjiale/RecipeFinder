@@ -14,7 +14,7 @@ const RecipeCard = props => {
     if(ingredients) missingingredients = recipe.ingredients.filter(recipeingr => !ingredients.some(ingr => recipeingr.text.includes(ingr)));
     return (
         <div className='recipe-card'>
-            <Link className='commentslink' to={`/recipe/comments/${ encodeURIComponent(recipe.uri) }`}>{ recipe.label }</Link>
+            <h3><Link className='commentslink' to={`/recipe/comments/${ encodeURIComponent(recipe.uri) }`}>{ recipe.label }</Link></h3>
             <br />
             { /* if authenticated, show the button. if not, show nothing */ }
             { email !== '' ? 
