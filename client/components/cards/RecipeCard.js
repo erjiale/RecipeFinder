@@ -23,7 +23,7 @@ const RecipeCard = props => {
                        unfavorite(recipe, email);
 
                     } else {
-                        //pls dont try to add the same recipe twice. i didnt add that exception yet
+                        // adds to favorite array in db only if it is NOT a duplicate
                         await axios.post(`/api/user/${email}/favorites`, { favoriteObj: recipe });
                         alert('added');
                     }
