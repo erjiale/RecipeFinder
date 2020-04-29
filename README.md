@@ -27,3 +27,20 @@ You don't know what to cook? RecipeFinder finds it for you!
 
 # 4-13 #
 #### added dropdown select when you type in an ingredient in the form. next step: i want to sort the found recipes by the amount of missing ingredients ####
+
+# 4-29 #
+#### Added Message Schema to model
+### REQUIREMENTS:
+- [ ] sign in
+- [x] sign up
+- [ ] favorite recipe
+- [ ] find recipe
+- [ ] order recipe
+.. -[ ] user can select a recipe
+admin is notified of a new user selection
+admin can approve or deny order via admin dashboard
+user will receive notification of approve or deny
+### Bug fixes, and updates needed:
+- [ ] Deleting a favorite element, does not delete from the db
+- [ ] RecipeFinder ingredients input bug -> salt cannot be input. Last resort: we can get rid of dropdown autocorrect
+- [ ] 
