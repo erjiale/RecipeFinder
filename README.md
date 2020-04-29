@@ -36,10 +36,10 @@ You don't know what to cook? RecipeFinder finds it for you!
 - [ ] favorite recipe - need to fix bug
 - [ ] find recipe - need to fix autocorrect
 - [ ] order recipe
-            - [ ] user can select a recipe
-            - [ ] admin is notified of a new user selection
-            - [ ] admin can approve or deny order via admin dashboard
-            - [ ] user will receive notification of approve or deny
+  - [ ] user can select a recipe
+  - [ ] admin is notified of a new user selection
+  - [ ] admin can approve or deny order via admin dashboard
+  - [ ] user will receive notification of approve or deny
 
 ### Bug fixes, and updates needed:
 - [ ] Deleting a favorite element, does not delete from the db
