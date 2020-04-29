@@ -40,6 +40,7 @@ router.post('/:email/favorites', async (req, res, next) => {
         else {
             res.status(400).json("error: already in favorites");
         }
+        
     } catch(err) {
         console.log(err);
     }
