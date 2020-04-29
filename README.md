@@ -31,16 +31,17 @@ You don't know what to cook? RecipeFinder finds it for you!
 # 4-29 #
 #### Added Message Schema to model
 ### REQUIREMENTS:
-- [ ] sign in
+- [x] sign in
 - [x] sign up
-- [ ] favorite recipe
-- [ ] find recipe
+- [ ] favorite recipe - need to fix bug
+- [ ] find recipe - need to fix autocorrect
 - [ ] order recipe
 .. -[ ] user can select a recipe
-admin is notified of a new user selection
-admin can approve or deny order via admin dashboard
-user will receive notification of approve or deny
+... -[ ] admin is notified of a new user selection
+... -[ ] admin can approve or deny order via admin dashboard
+... -[ ] user will receive notification of approve or deny
+
 ### Bug fixes, and updates needed:
 - [ ] Deleting a favorite element, does not delete from the db
 - [ ] RecipeFinder ingredients input bug -> salt cannot be input. Last resort: we can get rid of dropdown autocorrect
-- [ ] 
+- [ ] what
