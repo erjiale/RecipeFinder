@@ -7,12 +7,13 @@ import {createLogger} from 'redux-logger';
 import { _loadRecipes } from './actions/recipeactions';
 import { _login } from './actions/loginactions';
 import { _getFavorites, _destroy } from './actions/favoriteactions';
+import { _sendMessage } from './actions/messageactions';
 
 //reducers
 import recipesReducer from './reducers/recipereducers';
 import loginReducer from './reducers/loginreducers';
 import favoritesReducer from './reducers/favoritesreducer';
-
+import messageReducer from './reducers/messagereducer';
 
 const loadRecipes = (ingredients = 'chicken and beef and shrimp') => {
     return async dispatch => {
@@ -54,10 +55,18 @@ const signout = () => {
     return async dispatch => dispatch(_login({}));
 };
 
+const sendMessage = ({ senderId, receiverId, text }) => {
+    return async dispatch => {
+        const message = (await axios.post(`/api/messages/${receiverId}`, { senderId, text })).data
+        dispatch(_sendMessage(message));
+    };
+};
+
 const reducer = combineReducers({
     recipes: recipesReducer,
     login: loginReducer,
-    favorites: favoritesReducer
+    favorites: favoritesReducer,
+    message: messageReducer
 });
 
 const store = createStore(reducer, applyMiddleware(
@@ -71,6 +80,7 @@ export default store;
 export {
     loadRecipes,
     getFavorites,
+    sendMessage,
     destroy,
     login,
     signout
