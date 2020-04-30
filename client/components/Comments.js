@@ -6,24 +6,38 @@ import { connect } from 'react-redux';
 //components
 import RecipeCard from './cards/RecipeCard';
 
+//thunks
+import { sendMessage } from '../store/store';
+
 class Comments extends Component {
     constructor() {
         super();
         this.state = {
             recipe: {},
-            comment: ''
+            comment: '',
+            text: ''
         };
+        this.sendMessage = this.sendMessage.bind(this);
     }
-
     async componentDidMount() {
         const uri = this.props.match.params.uri;
         const recipe = (await axios.get(`/api/comments/${uri}`)).data[0];
         this.setState({ recipe: recipe });
     }
-
+    async sendMessage(ev){
+        ev.preventDefault();
+        await this.props.sendMessage({ 
+            senderId: this.props.user._id, 
+            receiverId: "5ea7725f1240bf2c2bad517a",
+            text: this.state.text
+        })
+        this.setState({ text: ''});
+        
+    }
     render() {
         const { user } = this.props;
-        const { recipe, comment } = this.state;
+        const { recipe, comment, text } = this.state;
+        const { sendMessage } = this;
 
         // const addComment = ev => {
         //     ev.preventDefault();
@@ -37,6 +51,9 @@ class Comments extends Component {
         return (
             <div>
                 { user.email && !user.admin ? <button onClick={ orderRecipe }>Order Recipe</button> : '' }
+                <form onSubmit={ sendMessage }>
+                    <input onChange={ ev => this.setState({ text: ev.target.value }) } value={ text } />
+                </form>
                 <RecipeCard recipe={ recipe } email='' />
                 {/* <h1>Comments</h1>
                 { user === {} ? <form onSubmit={ addComment }>
@@ -50,7 +67,7 @@ class Comments extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        sendMessage: message => dispatch(sendMessage(message))
     }
 };
 

@@ -32,6 +32,10 @@ class App extends Component {
 
     componentDidMount() {
         this.props.load();
+        const socket = io();
+        socket.on('chat', msg => {
+            console.log(msg.message);
+        }); 
     }
 
     render() {

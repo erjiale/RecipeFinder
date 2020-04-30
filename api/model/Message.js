@@ -5,7 +5,7 @@ const messageSchema = new mongoose.Schema({
         type: String,
         required: true,
         max: 255,
-        min: 6
+        min: 0
     },
     date: {
         type: Date,
@@ -21,7 +21,6 @@ const messageSchema = new mongoose.Schema({
         max: 1024,
         min: 6
     }
-    
 });
 
 module.exports = mongoose.model('Message', messageSchema);

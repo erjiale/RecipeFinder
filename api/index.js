@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
+const { setUp } = require('./socket/socketHelper');
 // import routes
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
@@ -27,10 +28,12 @@ app.use('/api/recipes', require('./routes/recipes'));
 app.use('/api/user', require('./routes/favorites'));
 app.use('/api/user', require('./routes/user'));
 app.use('/api/comments', require('./routes/singleRecipe'));
+app.use('/api/messages', require('./routes/messages'));
 
 app.get('/', (req, res, next)=> {
     res.sendFile(path.join(__dirname, '../client/static/index.html'));
 }); 
 
-app.listen(4000);
 
+const server = app.listen(4000)
+setUp(server);
