@@ -51,10 +51,12 @@ class Comments extends Component {
         return (
             <div>
                 { user.email && !user.admin ? <button onClick={ orderRecipe }>Order Recipe</button> : '' }
-                <form onSubmit={ sendMessage }>
+                {/* <form onSubmit={ sendMessage }>
                     <input onChange={ ev => this.setState({ text: ev.target.value }) } value={ text } />
-                </form>
+                </form> */}
+
                 <RecipeCard recipe={ recipe } email='' />
+                
                 {/* <h1>Comments</h1>
                 { user === {} ? <form onSubmit={ addComment }>
                                     <input type='text' value={ comment } onChange={ ev => this.setState({ comment: ev.target.value }) }/>

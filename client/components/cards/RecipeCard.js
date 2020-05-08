@@ -13,9 +13,11 @@ const RecipeCard = props => {
     //finds missing ingredients
     if(ingredients) missingingredients = recipe.ingredients.filter(recipeingr => !ingredients.some(ingr => recipeingr.text.includes(ingr)));
     return (
+        <div className="cards">
         <div className='recipe-card'>
-            <h3><Link className='commentslink' to={`/recipe/comments/${ encodeURIComponent(recipe.uri) }`}>{ recipe.label }</Link></h3>
-            <br />
+            {/* gunit */}
+            <h2><Link className='commentslink' to={`/recipe/comments/${ encodeURIComponent(recipe.uri) }`}>{ recipe.label }</Link></h2>
+
             { /* if authenticated, show the button. if not, show nothing */ }
             { email !== '' ? 
                 <form onSubmit={ async () => {
@@ -34,25 +36,27 @@ const RecipeCard = props => {
                 : ''
             }
 
-
-            <a href={ recipe.url } target="_blank" >{ recipe.url }</a>
+            {/*  */}
+            <a href={ recipe.url } target="_blank" >Link to recipe</a>
+            <br />
             <ul>
-                <p>Ingredients</p>
+                <h4>These are the Ingredients</h4>
                 {
-                    recipe.ingredients && recipe.ingredients.map((ingr, index) => <li key={ index }>{ingr.text}</li>)
+                    recipe.ingredients && recipe.ingredients.map((ingr, index) => <div key={ index }>{ingr.text}</div>)
                 }
             </ul>
             <img src={ recipe.image }/>
             { missingingredients.length !== 0 ?
             <div>
-                <h1>Missing ingredients</h1>
+                <h4>Missing ingredients</h4>
                 <ul>
                 {
-                    missingingredients.map((ingr, index) => <li key={ index }>{ingr.text}</li>)
+                    missingingredients.map((ingr, index) => <div  key={ index }>{ingr.text}</div>)
                 }
                 </ul>
             </div>
             : '' }
+        </div>
         </div>
     );
 };

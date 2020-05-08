@@ -100,10 +100,16 @@ class IngredientsForm extends Component {
                                 )
                             })
                         }
+
                         <button className="add" onClick={ ev => addIngredient(ev) }>Add more ingredients</button>
                         <input disabled={ ingredients.filter(ingr => ingr === '').length !== 0 ? 'disabled' : '' } className="add" type="submit" value="Find Recipe" />
+                        
                     </form>
                 </div>
+                
+                <div className="footWh"></div>
+                
+                {/* gunit */}
                 { recipes && recipes.length !== 0 ? <div ref={ this.ref }>
                                                 <Recipes email={ email } recipes={ recipes } ingredients={ ingredients } />
                                                </div> : ''}

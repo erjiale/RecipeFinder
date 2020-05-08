@@ -24,8 +24,8 @@ class FavoriteRecipes_ extends Component {
     render() {
         const { favorites, location, unfavorite, email } = this.props;
         return (
-            <main>
-                <h1>Your favorite recipes</h1>
+            <main className="cards">
+                <h3>Your favorite recipes</h3>
                 <div>
                     {
                         favorites.length !== 0 ? favorites.map((food, index) => <RecipeCard unfavorite={ unfavorite } email={ email } key={ index } location={ location.pathname.slice(1) } recipe={ food } /> ) : 'No saved reciped yet!!'

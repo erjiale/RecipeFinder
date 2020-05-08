@@ -9,6 +9,7 @@ body {
     color: black;
 }
 
+/*
 nav {
     display: flex;
     justify-content: space-between;
@@ -30,7 +31,7 @@ nav > div > a:hover, .selected {
     color: white;
     background-color: tomato;
 }
-
+*/
 .popularlink {
     font-size: 2rem;
 }
@@ -39,6 +40,7 @@ nav > div > a:hover, .selected {
     font-size: 1.5rem;
 }
 
+/* recipe names */
 h3 {
     display: flex;
     justify-content: center;
@@ -46,16 +48,26 @@ h3 {
 }
 
 .remove, .add {
+    flex-shrink: 3;
     padding: 0.5rem;
     font-size: 1rem;
 }
 
 .add {
+    border-radius: 500px;
+    -webkit-border-radius: 500px;
     width: 90%;
     margin: 1rem auto;
     box-sizing: border-box;
 }
 
+.remove {
+    border-radius: 50px;
+}
+.add:hover:enabled, .remove:hover {
+    background-color: #3e8e41;
+    color: white;
+}
 .form, .loginbutton  {
     display: flex;
     justify-content: center;
@@ -111,14 +123,28 @@ label {
     font-size: 2rem;
 }
 
+.cards {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
 .recipe-card > ul > p {
     font-size: 2rem;
 }
 
 .recipe-card {
+    border: 3px solid #3e8e41;
+    border-radius: 6px;
+    flex-shrink: 3;
     margin: 4rem;
     padding: 2rem;
-    border-bottom: 1px solid black;
+}
+
+.recipe-card:hover {
+    box-shadow: 5px 10px #888888;
+}
+.recipe-card > img {
+    align-self: flex-start;
 }
 
 .search-again {
@@ -145,4 +171,21 @@ label {
     font-weight: bold;
     text-decoration: none;
     font-size: 2rem;
+}
+
+.all-recipes {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.missIng {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-shrink: 3;
+}
+
+.HashRouter {
+    position: relative;
 }

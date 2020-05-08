@@ -14,8 +14,9 @@ class Login extends Component {
         const { login } = this.props;
 
         return (
+            <div>
             <div className="loginform">
-                <h1>admin info: admin@gmail.com, hello123</h1>
+                {/* <h1>admin info: admin@gmail.com, hello123</h1> */}
                 <form onSubmit={ ev => {ev.preventDefault; login({ email, password })} }>
                     <h1 className='loginform'>Login</h1>
                     <div className='logindiv'>
@@ -27,6 +28,11 @@ class Login extends Component {
                     </div>
                     <button disabled={ !email || !password ? 'disabled' : '' } className='loginbutton'>LOGIN</button>
                 </form>
+            </div>
+                     
+            <div className="footWh"></div>
+            <div className="footWh"></div>
+            <div className="footWh"></div>
             </div>
         );
     }

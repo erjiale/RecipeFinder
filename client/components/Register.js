@@ -15,6 +15,7 @@ class Register extends Component {
         const { register } = this.props;
 
         return (
+            <div>
             <div className="loginform">
                 <form onSubmit={ ev => {
                     ev.preventDefault; 
@@ -35,6 +36,10 @@ class Register extends Component {
                     </div>
                     <button className='loginbutton'>Register</button>
                 </form>
+            </div>
+            
+            <div className="footWh"></div>
+            <div className="footWh"></div>
             </div>
         );
     }
