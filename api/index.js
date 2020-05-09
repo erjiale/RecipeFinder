@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const path = require('path');
+const nodemailer = require('nodemailer');
 // import routes
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
@@ -26,7 +27,10 @@ app.use('/api/posts', postRoute)
 app.use('/api/recipes', require('./routes/recipes'));
 app.use('/api/user', require('./routes/favorites'));
 app.use('/api/user', require('./routes/user'));
-app.use('/api/comments', require('./routes/singleRecipe'));
+
+// TEST
+app.use('/api/user', require('./routes/orders'));
+app.use('/api/user', require('./routes/store'));
 
 app.get('/', (req, res, next)=> {
     res.sendFile(path.join(__dirname, '../client/static/index.html'));

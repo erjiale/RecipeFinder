@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const verify = require('./verifyToken');
 
+// route: '/api/posts'
 // add middleware 'verify'
 router.get('/', verify, (req, res) => {
     // res.json({

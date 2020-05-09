@@ -105,12 +105,6 @@ label {
     justify-content: space-around;
 }
 
-.favoritefood {
-    padding: 5rem;
-    color: blue;
-    font-size: 2rem;
-}
-
 .recipe-card > ul > p {
     font-size: 2rem;
 }

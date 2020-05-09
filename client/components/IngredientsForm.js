@@ -7,7 +7,7 @@ import Select from 'react-select';
 import Recipes from './Recipes';
 
 //thunks 
-import { loadRecipes } from '../store/store';
+import { loadRecipes, addFavorite } from '../store/store';
 
 class IngredientsForm extends Component {
     constructor() {
@@ -15,18 +15,18 @@ class IngredientsForm extends Component {
         this.ref = React.createRef();
         this.state = {
             ingredientsinput: ['','','','',''],
-            ingredients: ['','','','',''],
+            // ingredients: ['','','','',''],
             recipes: [],
             results: []
         };
     }
     
     render() {
-        const { ingredientsinput, results, ingredients } = this.state;
-        const { email, toggleFound } = this.props;
+        const { ingredientsinput, results } = this.state;
+        const { email, toggleFound, user } = this.props;
 
         //redux
-        const { getRecipes, recipes } = this.props;
+        const { getRecipes, recipes, addfavorite } = this.props;
 
         //this changes the INPUT value (this is needed because when you click outside of the dropdown, the value resets)
         const setIngredient = (value, index) => {
@@ -36,11 +36,11 @@ class IngredientsForm extends Component {
         };
 
         //this changes the ACTUAL INGREDIENTS ARRAY. this is the array that actually has all the ingredients in it
-        const changeValue = (value, index) => {
-            const tempingredients = [...ingredients];
-            tempingredients[index] = value;
-            this.setState({ ingredients: tempingredients });
-        };
+        // const changeValue = (value, index) => {
+        //     const tempingredients = [...ingredients];
+        //     tempingredients[index] = value;
+        //     this.setState({ ingredients: tempingredients });
+        // };
 
         const addIngredient = ev => {
             ev.preventDefault();
@@ -55,7 +55,7 @@ class IngredientsForm extends Component {
 
         const findRecipes = async (ev, inputs) => {
             ev.preventDefault();
-            const query = inputs.reduce((entirestring, ingredient) => {
+            const query = ingredientsinput.reduce((entirestring, ingredient) => {
                 if(entirestring === '') return ingredient;
                 else return `${entirestring} and ${ingredient}`;
             }, '');
@@ -77,35 +77,40 @@ class IngredientsForm extends Component {
         return (
             <main>
                 <div className="form">
-                    <form onSubmit={ (ev) => findRecipes(ev, ingredients) } >
+                    <form onSubmit={ (ev) => findRecipes(ev) } >
                         <h3>What ingredients do you have?</h3>
                         {
                             ingredientsinput.map((ingredient, index) => {
                                 return (
+                                    // <div key={ index } className="ingredientsinput">
+                                    //     <Select
+                                    //         inputValue={ ingredient }
+                                    //         onInputChange={ value => {
+                                    //             setIngredient(value, index);
+                                    //             autocorrect(index); 
+                                    //         }}
+                                    //         onChange={ ev => {
+                                    //             changeValue(ev.value, index);
+                                    //         } }
+                                    //         options={ results }
+                                    //         className='ingr'
+                                    //     />
+                                    //     { index >= 5 ? <button className='remove' onClick={ ev => deleteIngredient(ev, index) }>X</button> : ''}
+                                    // </div>
                                     <div key={ index } className="ingredientsinput">
-                                        <Select
-                                            inputValue={ ingredient }
-                                            onInputChange={ value => {
-                                                setIngredient(value, index);
-                                                autocorrect(index); 
-                                            }}
-                                            onChange={ ev => {
-                                                changeValue(ev.value, index);
-                                            } }
-                                            options={ results }
-                                            className='ingr'
-                                        />
+                                        <input type='text' onChange={ ev => setIngredient(ev.target.value, index) } />
+                                    
                                         { index >= 5 ? <button className='remove' onClick={ ev => deleteIngredient(ev, index) }>X</button> : ''}
                                     </div>
                                 )
                             })
                         }
                         <button className="add" onClick={ ev => addIngredient(ev) }>Add more ingredients</button>
-                        <input disabled={ ingredients.filter(ingr => ingr === '').length !== 0 ? 'disabled' : '' } className="add" type="submit" value="Find Recipe" />
+                        <input disabled={ ingredientsinput.filter(ingr => ingr === '').length !== 0 ? 'disabled' : '' } className="add" type="submit" value="Find Recipe" />
                     </form>
                 </div>
                 { recipes && recipes.length !== 0 ? <div ref={ this.ref }>
-                                                <Recipes email={ email } recipes={ recipes } ingredients={ ingredients } />
+                                                <Recipes user={ user } email={ email } recipes={ recipes } ingredients={ ingredientsinput } addfavorite={ addfavorite } />
                                                </div> : ''}
             </main>
 
@@ -123,6 +128,9 @@ const mapDispatchToProps = dispatch => {
     return {
         getRecipes: ingredients => {
             dispatch(loadRecipes(ingredients));
+        },
+        addfavorite: (recipe, email) => {
+            dispatch(addFavorite(recipe,email))
         }
     };
 };

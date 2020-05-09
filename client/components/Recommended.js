@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import RecipeCard from './cards/RecipeCard';
 
 //thunks 
-import { loadRecipes } from '../store/store';
+import { loadRecipes, addFavorite } from '../store/store';
 
 class Recommended extends Component {
     constructor() {
@@ -15,7 +15,7 @@ class Recommended extends Component {
     // }
 
     render() {
-        const { recipes, email, foundRecipe, toggleFound, load } = this.props;
+        const { recipes, email, foundRecipe, toggleFound, load, user, addfavorite } = this.props;
         return (
             <div className='all-recipes'>
                 {
@@ -26,10 +26,10 @@ class Recommended extends Component {
                     : ''
                 }
                 {
-                    recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } recipe={ recipe.recipe } email={ email } /> )
+                    recipes.map(recipe => <RecipeCard key={ recipe.recipe.uri } addfavorite={ addfavorite } user={ user } recipe={ recipe.recipe } email={ email } /> )
                 }
             </div>
-        ); 
+        );
     }
 };
 
@@ -42,8 +42,12 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         load: () => {
-            dispatch(loadRecipes());
+            dispatch(loadRecipes())
+        },
+        addfavorite: (recipe, email) => {  
+            dispatch(addFavorite(recipe,email))
         }
+
     }
 };
 
