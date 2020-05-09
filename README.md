@@ -1,5 +1,6 @@
 # RecipeFinder
 You don't know what to cook? RecipeFinder finds it for you!
+<p>RecipeFinder allows you to search recipes based on the ingredients you have to your disposal. By registering with us, you can also <b>save recipes</b> you like for future reference, and even <b>order recipes</b> from our Store of recipes</p>
 
 ## How to Run
 #### 1. npm i ####
