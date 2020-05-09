@@ -35,14 +35,14 @@ You don't know what to cook? RecipeFinder finds it for you!
 - [x] sign in
 - [x] sign up
 - [x] favorite recipe
-- [ ] find recipe - need to fix autocorrect
-- [ ] order recipe
-  - [ ] user can select a recipe
+- [x] find recipe - need to fix autocorrect
+- [x] order recipe
+  - [x] user can select a recipe
   - [ ] admin is notified of a new user selection
-  - [ ] admin can approve or deny order via admin dashboard
-  - [ ] user will receive notification of approve or deny
+  - [x] admin can approve or deny order via admin dashboard
+  - [x] user will receive notification of approve or deny
 
 ### Bug fixes, and updates needed:
 - [x] Deleting a favorite element, does not delete from the db
-- [ ] RecipeFinder ingredients input bug -> salt cannot be input. Last resort: we can get rid of dropdown autocorrect
-- [ ] Work on admin approval and Order Recipe
+- [x] RecipeFinder ingredients input bug -> salt cannot be input. Last resort: we can get rid of dropdown autocorrect
+- [x] Work on admin approval and Order Recipe
