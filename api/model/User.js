@@ -25,6 +25,13 @@ const userSchema = new mongoose.Schema({
     },
     favorites: {
         type: Array
+    },
+    orders: {
+        type: Array
+    },
+    admin: {
+        type: Boolean,
+        default: false
     }
 });
 

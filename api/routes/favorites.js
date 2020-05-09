@@ -15,16 +15,16 @@ router.get('/:email/favorites', async (req, res, next) => {
 
 router.post('/:email/favorites', async (req, res, next) => {
     const { email } = req.params;
+    // const uri = decodeURIComponent(req.params.uri);
     const { favoriteObj } = req.body;
-    try {
+    try {   
         const user = await User.findOne(
             { email: email },
             { favorites: [] } 
         );
         const favorites = user.favorites;
 
-        // not a duplicate? Then update array.
-        if(favorites.filter(favorite=>favorite.uri === favoriteObj.uri).length === 0) {
+        if (user.favorites.filter(favorite=>favorite.uri === favoriteObj.uri).length === 0) {
             await User.updateOne(
                 { email: email },
                 [
@@ -34,13 +34,15 @@ router.post('/:email/favorites', async (req, res, next) => {
                         }
                     }
                 ])
-            res.status(201).json(user);
+            res.status(201).json(user)
         }
         else {
-            res.status(400).json("error: already in favorites");
+            res.status(400).json(user)
         }
         
+        
     } catch(err) {
+        // res.status(400).json(err);
         console.log(err);
     }
 });

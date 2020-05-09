@@ -12,11 +12,11 @@ class Login extends Component {
     render() {
         const { email, password } = this.state;
         const { login } = this.props;
-
+        
         return (
             <div className="loginform">
-                <h1>admin info: admin@gmail.com, hello123</h1>
-                <form onSubmit={ ev => {ev.preventDefault; login({ email, password })} }>
+                <form onSubmit={ ev => {ev.preventDefault; 
+                    login({ email, password })} }>
                     <h1 className='loginform'>Login</h1>
                     <div className='logindiv'>
                         <label htmlFor='email'>Email:</label>
