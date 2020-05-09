@@ -9,7 +9,6 @@ import IngredientsForm from './IngredientsForm';
 import Login from './Login';
 import Register from './Register';
 import Recommended from './Recommended';
-import Comments from './Comments';
 
 // logged in components 
 import User_ from './authorized/User_';
@@ -33,7 +32,7 @@ class App extends Component {
     }
     
     componentDidMount() {
-        this.props.load();
+        this.props.load(); 
     }
 
     render() {

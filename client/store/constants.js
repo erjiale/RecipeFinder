@@ -5,3 +5,4 @@ export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const GET_FAVORITES = 'GET_FAVORITES';
 export const GET_ORDERS = 'GET_ORDERS';
 export const DESTROY_ORDER = 'DESTROY_ORDER';
+

@@ -34,7 +34,7 @@ You don't know what to cook? RecipeFinder finds it for you!
 ### REQUIREMENTS:
 - [x] sign in
 - [x] sign up
-- [ ] favorite recipe - need to fix bug
+- [x] favorite recipe
 - [ ] find recipe - need to fix autocorrect
 - [ ] order recipe
   - [ ] user can select a recipe
@@ -43,6 +43,6 @@ You don't know what to cook? RecipeFinder finds it for you!
   - [ ] user will receive notification of approve or deny
 
 ### Bug fixes, and updates needed:
-- [ ] Deleting a favorite element, does not delete from the db
+- [x] Deleting a favorite element, does not delete from the db
 - [ ] RecipeFinder ingredients input bug -> salt cannot be input. Last resort: we can get rid of dropdown autocorrect
 - [ ] Work on admin approval and Order Recipe
