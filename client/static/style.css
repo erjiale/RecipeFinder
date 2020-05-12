@@ -1,142 +1,226 @@
 body {
-    margin: 0;
-}   
-
-.homepage {
-    font-size: 5rem;
-    padding: 1rem;
-    text-decoration: none;
-    color: black;
+  margin: 0;
 }
 
+.homepage {
+  font-size: 5rem;
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+.popularrec {
+  text-align: center;
+}
+/*
 nav {
-    display: flex;
-    justify-content: space-between;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    padding: 2rem;
-    margin: 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 2rem;
+  margin: 2rem 0;
 }
 
 nav > div > a {
-    padding: 2rem;
-    font-size: 2rem;
-    text-decoration: none;
-    color: black;
+  padding: 2rem;
+  font-size: 2rem;
+  text-decoration: none;
+  color: black;
 }
 
 nav > div > a:hover, .selected {
-    text-decoration: none;
-    color: white;
-    background-color: tomato;
+  text-decoration: none;
+  color: white;
+  background-color: tomato;
 }
-
+*/
 .popularlink {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .loginregisterlink {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
+/* recipe names */
 h3 {
-    display: flex;
-    justify-content: center;
-    font-size: 3rem;
+  display: flex;
+  justify-content: center;
+  font-size: 3rem;
 }
 
-.remove, .add {
-    padding: 0.5rem;
-    font-size: 1rem;
+.remove,
+.add,
+.sub {
+  flex-shrink: 3;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
-.add {
-    width: 90%;
-    margin: 1rem auto;
-    box-sizing: border-box;
+.add,
+.sub {
+  border-radius: 500px;
+  -webkit-border-radius: 500px;
+  width: 90%;
+  margin: 1rem auto;
+  box-sizing: border-box;
 }
 
-.form, .loginbutton  {
-    display: flex;
-    justify-content: center;
+.remove {
+  border-radius: 50px;
+}
+.add:hover:enabled,
+.remove:hover,
+.sub:hover:enabled {
+  background-color: #3e8e41;
+  color: white;
+}
+.form,
+.loginbutton {
+  display: flex;
+  justify-content: center;
 }
 
 .loginform {
-    text-align: center;
+  text-align: center;
 }
 
 .logininputs {
-    width: 50%;
-    margin: 1rem;
-    box-sizing: border-box;
-    padding: 0.5rem;
-    font-size: 1rem;
+  width: 50%;
+  margin: 1rem;
+  box-sizing: border-box;
+  padding: 0.5rem;
+  font-size: 1rem;
 }
 
 .logindiv {
-    text-align: right;
-    width: 70%;
+  text-align: right;
+  width: 70%;
 }
 
 .loginbutton {
-    padding: 1rem;
-    border-radius: 10px;
-    margin: 0 auto;
+  padding: 1rem;
+  border-radius: 10px;
+  margin: 0 auto;
 }
 
 .error {
-    display: flex;
-    justify-content: center;
-    background-color: tomato;
-    width: 100vw;
-    padding: 1rem;
+  display: flex;
+  justify-content: center;
+  background-color: tomato;
+  width: 100vw;
+  padding: 1rem;
 }
 
 .invisibleerror {
-    display: none;
+  display: none;
 }
 
 label {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 .allfavorites {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
+.favoritefood {
+  padding: 5rem;
+  color: blue;
+  font-size: 2rem;
+}
+
+#flexCard {
+  width: 20vw;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
 .recipe-card > ul > p {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .recipe-card {
-    margin: 4rem;
-    padding: 2rem;
-    border-bottom: 1px solid black;
+  border: 3px solid #3e8e41;
+  border-radius: 6px;
+  flex-shrink: 3;
+  margin: 4rem;
+  padding: 2rem;
+}
+
+.recipe-card:hover {
+  box-shadow: 5px 10px #888888;
+}
+.recipe-card > img {
+  align-self: flex-start;
 }
 
 .search-again {
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2rem;
 }
 
 .ingredientsinput {
-    width: 100%;
+  width: 100%;
 }
 
 .ingr {
-    margin: 1rem 0;
-    width: 90%;
+  margin: 1rem 0;
+  width: 90%;
 }
 
-.ingr, .remove {
-    display: inline-block;
+.ingr,
+.remove {
+  display: inline-block;
 }
 
 .commentslink {
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 2rem;
+}
+
+.all-recipes {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.missIng {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  flex-shrink: 3;
+}
+
+.HashRouter {
+  position: relative;
+}
+
+.navclass {
+  background-color: #255959;
+}
+
+#enlargeLink:hover {
+  font-size: 101%;
+  font-weight: 400;
+}
+
+.cardIngredients {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footWh {
+  position: relative;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: white;
+  text-align: center;
 }

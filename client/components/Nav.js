@@ -1,19 +1,63 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Nav = ({ location, foundRecipe }) => {
-    const url = location.pathname.slice(1);
-    return (
-        <nav>
-            <div className="popularlink">
-                <Link to='/popular' className={ url === 'popular' ? 'selected' : '' } >{ foundRecipe ? 'Your Recipes' : 'Recommended Recipes' }</Link>
+  const url = location.pathname.slice(1);
+  return (
+    <div id="mainNavbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">
+        RECIPE FINDER
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Recipes
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#/search" id="enlargeLink">
+                Search by Ingredients
+              </a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#/popular" id="enlargeLink">
+                Popular Recipes
+              </a>
             </div>
-            <div className="loginregisterlink">
-                <Link to='/login' className={ url === 'login' ? 'selected' : '' } >Login</Link>
-                <Link to='/register' className={ url === 'register' ? 'selected' : '' } >Register</Link>
-            </div>
-        </nav>
-    );
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/login" id="enlargeLink">
+              Login
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#/register" id="enlargeLink">
+              Register
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
 };
 
 export default Nav;
