@@ -1,7 +1,7 @@
 .ingrform {
   background: url(https://images.unsplash.com/photo-1491185841098-9ce20f966624?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80);
   background-size: cover;
-  height: 700px;
+  height: 100vh;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   overflow-x: hidden;

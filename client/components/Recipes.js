@@ -3,7 +3,7 @@ import RecipeCard from "./cards/RecipeCard";
 
 const Recipes = ({ recipes, ingredients, email, addfavorite, user }) => {
   return (
-    <div className="all-recipes">
+    <div className="all-recipes mt-3">
       {/* <Link className='search-again' to='/' onClick={ reset }>Search Again</Link> */}
       {recipes &&
         recipes.map((recipe) => (

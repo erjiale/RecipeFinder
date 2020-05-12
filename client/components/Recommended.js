@@ -34,15 +34,12 @@ class Recommended extends Component {
             <h2>Our top recommendations and popular suggestions</h2>
           </div>
         </div>
-
-        <div className="footWh"></div>
-
-        <div className="all-recipes">
-          {foundRecipe ? (
+        <div className="text-center">
+        {foundRecipe ? (
             <button
               type="submit"
               value="Go to search"
-              class="btn btn-default btn-lg"
+              class="bg-dark text-light btn btn-default btn-lg border border-rounded m-4"
               onClick={() => {
                 toggleFound();
                 load();
@@ -53,6 +50,10 @@ class Recommended extends Component {
           ) : (
             ""
           )}
+          </div>
+
+        <div className="all-recipes">
+          
           {recipes.map((recipe) => (
             <RecipeCard
               key={recipe.recipe.uri}
