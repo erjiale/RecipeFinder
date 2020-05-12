@@ -42,7 +42,8 @@ class Orders_ extends Component {
                 <h2>Place your order here before your food gets cold</h2>
               </div>
             </div>
-            <div className="container content4">
+            {/* <div className="container content4"> */}
+            <div className="all-recipes mt-3">
               {orders.length !== 0
                 ? orders.map((food, index) => (
                     <RecipeCard
@@ -70,7 +71,8 @@ class Orders_ extends Component {
                     <h3>This is your Order History</h3>
                   </div>
                 </div>
-                <div className="container content4">
+                {/* <div className="container content4"> */}
+                <div className="all-recipes mt-3">
                   {orders.length !== 0
                     ? orders.map((food, index) => (
                         <RecipeCard

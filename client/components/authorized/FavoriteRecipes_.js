@@ -40,7 +40,7 @@ class FavoriteRecipes_ extends Component {
             <h2>Here is where you can keep all of your favorites!</h2>
           </div>
         </div>
-        <div class="container content4">
+        {/* <div class="container content4">
           <div class="row">
             <div class="col-sm-12">
               {favorites.length !== 0
@@ -58,7 +58,22 @@ class FavoriteRecipes_ extends Component {
                 : "No saved recipes yet!!"}
             </div>
           </div>
-        </div>
+        </div> */}
+        <div class="all-recipes mt-3">
+              {favorites.length !== 0
+                ? favorites.map((food, index) => (
+                    <RecipeCard
+                      user={user}
+                      unfavorite={unfavorite}
+                      addfavorite={addfavorite}
+                      email={email}
+                      key={index}
+                      location={location.pathname.slice(1)}
+                      recipe={food}
+                    />
+                  ))
+                : "No saved recipes yet!!"}
+            </div>
       </main>
     );
   }

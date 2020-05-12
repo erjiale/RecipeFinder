@@ -1,7 +1,7 @@
 .loginimg {
   background: url(https://images.unsplash.com/photo-1513135557534-682d53fd7046?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1049&q=80);
   background-size: cover;
-  height: 700px;
+  height: 100vh;
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   overflow-x: hidden;
