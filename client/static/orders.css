@@ -1,0 +1,9 @@
+.orderimg {
+  background: url(https://images.unsplash.com/photo-1498653248876-a1aa4dfade30?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80);
+  background-size: cover;
+  height: 700px;
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  overflow-x: hidden;
+  color: white;
+}

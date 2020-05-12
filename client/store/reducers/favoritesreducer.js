@@ -1,4 +1,4 @@
-import { GET_FAVORITES, DESTROY_FAVORITE } from '../constants';
+import { GET_FAVORITES, DESTROY_FAVORITE, ADD_FAVORITE } from '../constants';
 
 const favoritesReducer = (state = [], action)=> {
     switch(action.type) {
@@ -7,6 +7,10 @@ const favoritesReducer = (state = [], action)=> {
             break;
         case DESTROY_FAVORITE:
             state = state.filter(recipe => recipe.uri !== action.recipe.uri);
+            break;
+        case ADD_FAVORITE:
+            // state = [...state].push([action.recipe]);
+            state = [...state, action.recipe];
             break;
 	}
   	return state;
