@@ -59,21 +59,26 @@ class FavoriteRecipes_ extends Component {
             </div>
           </div>
         </div> */}
+
+        <div class="footWh"></div>
+        <div class="footWh"></div>
+        <div class="footWh"></div>
+
         <div class="all-recipes mt-3">
-              {favorites.length !== 0
-                ? favorites.map((food, index) => (
-                    <RecipeCard
-                      user={user}
-                      unfavorite={unfavorite}
-                      addfavorite={addfavorite}
-                      email={email}
-                      key={index}
-                      location={location.pathname.slice(1)}
-                      recipe={food}
-                    />
-                  ))
-                : "No saved recipes yet!!"}
-            </div>
+          {favorites.length !== 0
+            ? favorites.map((food, index) => (
+                <RecipeCard
+                  user={user}
+                  unfavorite={unfavorite}
+                  addfavorite={addfavorite}
+                  email={email}
+                  key={index}
+                  location={location.pathname.slice(1)}
+                  recipe={food}
+                />
+              ))
+            : "No saved recipes yet!!"}
+        </div>
       </main>
     );
   }
