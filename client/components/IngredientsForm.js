@@ -88,6 +88,9 @@ class IngredientsForm extends Component {
           <div className="form fade-in">
             <form onSubmit={(ev) => findRecipes(ev)}>
               <h3 class="content3">What ingredients do you have?</h3>
+              <h6 class="d-flex justify-content-center">
+                *Must input at least 5 ingredients
+              </h6>
               {ingredientsinput.map((ingredient, index) => {
                 return (
                   // <div key={ index } className="ingredientsinput">

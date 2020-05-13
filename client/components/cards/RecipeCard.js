@@ -40,9 +40,9 @@ const RecipeCard = (props) => {
         !ingredients.some((ingr) => recipeingr.text.includes(ingr))
     );
   return (
-    <div className="row justify-content-around">
+    <div className="row d-flex justify-content-around no-gutters">
       <div className="col-sm-12">
-        <div className="card-deck">
+        <div className="card-deck ">
           <div className="card" id="flexCard">
             <img
               className="card-img-top"
@@ -50,11 +50,11 @@ const RecipeCard = (props) => {
               alt="Card image cap"
             />
             <div className="card-body">
-              <h3 className="card-title">
-                <a href={recipe.url} target="_blank">
+              <h4 className="card-title">
+                <a class="" href={recipe.url} target="_blank">
                   {recipe.label}
                 </a>
-              </h3>
+              </h4>
               <br />
               {email !== "" ? (
                 <form
@@ -154,75 +154,78 @@ const RecipeCard = (props) => {
               )}
 
               <br />
+            </div>
+          </div>
+        </div>
+        <div className="row d-flex justify-content-around no-gutters">
+          <div className="col-sm-12">
+            <div class="fix" id="accordion">
+              <div className="card">
+                <div className="card-header" id="headingOne">
+                  <h5 class="mb-0">
+                    <button
+                      class="btn btn-link"
+                      data-toggle="collapse"
+                      data-target="#collapseOne"
+                      aria-expanded="true"
+                      aria-controls="collapseOne"
+                    >
+                      These are the ingredients
+                    </button>
+                  </h5>
+                </div>
 
-              <div id="accordion">
-                <div className="card">
-                  <div className="card-header" id="headingOne">
+                <div
+                  id="collapseOne"
+                  class="collapse show"
+                  aria-labelledby="headingOne"
+                  data-parent="#accordion"
+                >
+                  <div class="card-body">
+                    <ul>
+                      {recipe.ingredients &&
+                        recipe.ingredients.map((ingr, index) => (
+                          <li key={index}>{ingr.text}</li>
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {missingingredients.length !== 0 ? (
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
                     <h5 class="mb-0">
                       <button
-                        class="btn btn-link"
+                        class="btn btn-link collapsed"
                         data-toggle="collapse"
-                        data-target="#collapseOne"
-                        aria-expanded="true"
-                        aria-controls="collapseOne"
+                        data-target="#collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="collapseTwo"
                       >
-                        These are the ingredients
+                        These are your missing ingredients
                       </button>
                     </h5>
                   </div>
 
                   <div
-                    id="collapseOne"
-                    class="collapse show"
-                    aria-labelledby="headingOne"
+                    id="collapseTwo"
+                    class="collapse"
+                    aria-labelledby="headingTwo"
                     data-parent="#accordion"
                   >
                     <div class="card-body">
                       <ul>
-                        {recipe.ingredients &&
-                          recipe.ingredients.map((ingr, index) => (
-                            <li key={index}>{ingr.text}</li>
-                          ))}
+                        {missingingredients.map((ingr, index) => (
+                          <li key={index}>{ingr.text}</li>
+                        ))}
                       </ul>
                     </div>
                   </div>
                 </div>
-
-                {missingingredients.length !== 0 ? (
-                  <div class="card">
-                    <div class="card-header" id="headingTwo">
-                      <h5 class="mb-0">
-                        <button
-                          class="btn btn-link collapsed"
-                          data-toggle="collapse"
-                          data-target="#collapseTwo"
-                          aria-expanded="false"
-                          aria-controls="collapseTwo"
-                        >
-                          These are your missing ingredients
-                        </button>
-                      </h5>
-                    </div>
-
-                    <div
-                      id="collapseTwo"
-                      class="collapse"
-                      aria-labelledby="headingTwo"
-                      data-parent="#accordion"
-                    >
-                      <div class="card-body">
-                        <ul>
-                          {missingingredients.map((ingr, index) => (
-                            <li key={index}>{ingr.text}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  ""
-                )}
-              </div>
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

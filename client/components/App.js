@@ -143,7 +143,7 @@ class App extends Component {
 
               <div class="container content3">
                 <div class="row d-flex justify-content-center">
-                  <div class="col-lg-6">
+                  <div class="col-md-12 col-lg-6 d-flex justify-content-center content3">
                     <div class="card" id="slim">
                       <div class="card-body">
                         <h1>
@@ -160,7 +160,7 @@ class App extends Component {
                     </div>
                   </div>
 
-                  <div class="col-md-6">
+                  <div class="col-md-12 col-lg-6 d-flex justify-content-center content3">
                     <div class="card" id="slim">
                       <div class="card-body">
                         <h1>

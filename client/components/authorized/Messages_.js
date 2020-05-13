@@ -1,20 +1,16 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React from "react";
+import { connect } from "react-redux";
 
 const Messages_ = ({ user }) => {
-    return null;
+  return null;
 };
 
-const mapStateToProps = state => {
-    return {
-
-    };
+const mapStateToProps = (state) => {
+  return {};
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-
-    };
+const mapDispatchToProps = (dispatch) => {
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Messages_);
